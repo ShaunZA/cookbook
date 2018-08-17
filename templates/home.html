@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+    
+    <div class="row">
+        {% if session['username'] %}
+        <div class="col s12 center-align">
+            <h3>WELCOME TO RECIPES, {{ session['username'].upper() }}!</h3>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="row">
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/biscuits-cookies.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Biscuits And Cookies</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/bread.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Bread</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/breakfast.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Breakfast</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/cake.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Cake</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/dessert.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Dessert</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/drinks.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Drinks</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/main-course.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Main Course</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/pancakes.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Pancakes</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/pie-tart.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Pies And Tarts</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/preserves.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Preserves</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/salad.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Salads</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/sandwiches.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Sandwiches</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/side-dishes.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Side Dishes</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/soup.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Soup</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/starters.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Starters</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s3">
+            <div class="card hoverable">
+                <div class="card-image">
+                <img src="static/img/cat/sweets.jpg">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content center-align">
+                        <a href="#"><strong>Sweets</strong></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <ul class="collapsible">
+                {% for recipe in recipes %}
+                <li>
+                    <div class="collapsible-header" data-collapsible="accordion">
+                        <div class="col s1">
+                            <i class="material-icons">arrow_drop_down</i>
+                        </div>
+                        <div class="col s11 task_header">
+                            <strong>{{recipe.name}}</strong>
+                        </div>
+                    </div>
+                    <div class="collapsible-body">
+                        <span>
+                            {{recipe.desc}}
+                        </span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

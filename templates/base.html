@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <title>Recipes Galore!</title>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="static/css/custom.css" type="text/css" />
+      
+    </head>
+    
+    <body>
+    
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="{{ url_for('index') }}" class="brand-logo">Recipes!</a>
+                    <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        {% if session['username'] %}
+                        <li><a href="{{ url_for('create_recipe') }}">Create Recipe</a></li>
+                        <li><a href="{{ url_for('index') }}">Recipes</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        {% if session['username'] %}
+                        <li><a href="#">User Page</a></li>
+                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <ul class="sidenav" id="mobile-menu">
+            {% if session['username'] %}
+            <li><a href="{{ url_for('create_recipe') }}">Create Recipe</a></li>
+            {% endif %}
+            <li><a href="{{ url_for('create_recipe') }}">Recipes</a></li>
+            <li><a href="#">User Page</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+        </ul>
+
+        {% block body %}
+        {% endblock %}
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+        <script type="text/javascript" src="static/js/custom.js"></script>
+    
+    </body>
+
+</html>

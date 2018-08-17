@@ -1,0 +1,7 @@
+#removeIngButton, #removeInsButton {
+    display: none;
+}
+
+.card-content {
+    padding: 12px 4px !important;
+}

@@ -1,9 +1,10 @@
 import os
 import json
 import collections
+import bcrypt
 from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
-import bcrypt
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
@@ -11,6 +12,10 @@ app.config["MONGO_DBNAME"] = 'myrecipedb'
 app.config["MONGO_URI"] = 'mongodb://root:r00tp4ss...@ds219832.mlab.com:19832/myrecipedb'
 
 mongo = PyMongo(app)
+
+
+#------------------------------------HOME---------------------------------------
+
 
 @app.route('/')
 def index():
@@ -20,6 +25,10 @@ def index():
         return render_template('home.html', recipes=recipe_list)
 
     return render_template('login.html')
+
+
+#-----------------------------USER LOGIN/LOGOUT---------------------------------
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -33,10 +42,12 @@ def login():
 
     return 'Invalid Username or Password'
 
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -47,36 +58,40 @@ def register():
         if active_user is None:
             hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
             users.insert({
-                'username' : request.form['username'], 
-                'first_name' : request.form['first_name'], 
-                'last_name' : request.form['last_name'], 
-                'email' : request.form['email'], 
-                'password' : hashpass, 
+                'username' : request.form['username'],
+                'first_name' : request.form['first_name'],
+                'last_name' : request.form['last_name'],
+                'email' : request.form['email'],
+                'password' : hashpass,
                 'created_recipes' : []
             })
             session['username'] = request.form['username']
             return redirect(url_for('index'))
-        
+
         return 'That username already exists!'
 
     return render_template('register.html')
 
+
+#-------------------------------RECIPE STUFF------------------------------------
+
+
 @app.route('/create_recipe', methods=['POST', 'GET'])
 def create_recipe():
     if 'username' in session:
-        
+
         if request.method == 'POST':
             ingredients_arr = {}
             instructions_arr = {}
             recipe = mongo.db.recipes
             form_data = request.form.to_dict(flat=True)
-            
+
             for key, value in form_data.items():
                 if key.startswith('instruction'):
-                    instructions_arr[key.replace("instruction","")] =  str(value)
+                    instructions_arr[key.replace("instruction","")] = str(value)
                 if key.startswith('ingredient'):
-                    ingredients_arr[key.replace("ingredient","")] =  str(value)
-            
+                    ingredients_arr[key.replace("ingredient","")] = str(value)
+
             recipe.insert({
                 'name' : request.form['recipename'],
                 'desc' : request.form['recipedesc'],
@@ -88,16 +103,24 @@ def create_recipe():
                 'img_url' : request.form['img_url'],
                 'author' : session['username']
             })
-            
+
             return 'Done!'
-        
+
         return render_template('create_recipe.html', categories=mongo.db.categories.find())
-    
+
     return render_template('login.html')
 
-@app.route('/recipe')
-def recipe():
-    return render_template('recipe.html')
+
+@app.route('/recipe/<recipe_id>')
+def recipe(recipe_id):
+    
+    show_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    instructions_list = show_recipe['instructions']
+    ingredients_list = show_recipe['ingredients_list']
+        
+    return render_template('recipe.html', recipe=show_recipe, categories=mongo.db.categories.find(), ingredients_list=ingredients_list, instructions_list=instructions_list)
+
+#-------------------------------------------------------------------------------
 
 @app.route('/about')
 def about():

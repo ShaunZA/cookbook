@@ -2,6 +2,6 @@
     display: none;
 }
 
-.card-content {
+.card-stacked .card-content {
     padding: 12px 4px !important;
 }

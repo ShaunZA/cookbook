@@ -13,7 +13,7 @@
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="static/css/custom.css" type="text/css" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" type="text/css" />
       
     </head>
     
@@ -27,7 +27,7 @@
                     <ul class="right hide-on-med-and-down">
                         {% if session['username'] %}
                         <li><a href="{{ url_for('create_recipe') }}">Create Recipe</a></li>
-                        <li><a href="{{ url_for('index') }}">Recipes</a></li>
+                        <li><a href="{{ url_for('create_recipe') }}">Recipes</a></li>
                         {% endif %}
                         <li><a href="{{ url_for('about') }}">About</a></li>
                         {% if session['username'] %}
@@ -53,7 +53,7 @@
     
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-        <script type="text/javascript" src="static/js/custom.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
     
     </body>
 

@@ -112,14 +112,26 @@ def create_recipe():
     return render_template('login.html')
 
 
-@app.route('/recipe/<recipe_id>')
+@app.route('/recipe/<recipe_id>') # Page to view a Recipe
 def recipe(recipe_id):
     
     show_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     instructions_list = show_recipe['instructions']
     ingredients_list = show_recipe['ingredients_list']
         
-    return render_template('recipe.html', recipe=show_recipe, categories=mongo.db.categories.find(), ingredients_list=ingredients_list, instructions_list=instructions_list)
+    return render_template('recipe.html', recipe=show_recipe, categories=mongo.db.categories.find(), 
+                            ingredients_list=ingredients_list, instructions_list=instructions_list)
+
+@app.route('/category/<category>')
+def category(category):
+    username = session['username']
+    category = mongo.db.categories.find({"category_name": category}) #search categories in categories db
+    cat_list = list(category) #create list out of above answer
+    fancy = cat_list[0]['fancy_name'] #target fancy cat name
+    _recipes = mongo.db.recipes.find({"category": fancy}) #category=fancy name
+    recipe_list = list(_recipes)
+
+    return render_template('category.html', username=username, recipes=recipe_list, cat=fancy)
 
 
 #--------------------------------OTHER PAGES------------------------------------
@@ -133,7 +145,8 @@ def user(username):
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    username = session['username']
+    return render_template('about.html', username=username)
 
 
 #-------------------------------------------------------------------------------

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+<h3>{{ cat }}</h3>
+ <ul class="collapsible">
+    {% for recipe in recipes %}
+    <li>
+        <div class="collapsible-header" data-collapsible="accordion">
+            <div class="col s2">
+                <i class="material-icons">arrow_downward</i>
+            </div>
+            <div class="col s10 task_header">
+                <strong>{{recipe.name}}</strong>
+            </div>
+        </div>
+        <div class="collapsible-body">
+            <span>
+                test
+            </span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+
+{% endblock %}

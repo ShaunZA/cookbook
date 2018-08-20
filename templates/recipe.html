@@ -5,12 +5,12 @@
         <div class="col s12">
             <div class="card">
                 <div class="card-image">
-                    <img src="{{ recipe.img_url }}">
+                    <img src="{{ recipe.img_url }}" class="img-responsive">
                 </div>
                 <div class="card-content">
                     <div class="row">
                         <h4>{{ recipe.name }}</h4>
-                        <p>Category: {{ recipe.category }}</p>
+                        <p><strong>Category:</strong> {{ recipe.category }}</p>
                     </div>
                     <div class="row">
                     <p>{{ recipe.desc }}</p>

@@ -5,3 +5,10 @@
 .card-stacked .card-content {
     padding: 12px 4px !important;
 }
+
+.thumbnail {
+  object-fit: cover;
+  width:100px;
+  height:100px;
+  border-radius: 50%
+}

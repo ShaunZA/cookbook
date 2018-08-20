@@ -107,7 +107,7 @@ def create_recipe():
 
             return 'Done!'
 
-        return render_template('create_recipe.html', categories=mongo.db.categories.find())
+        return render_template('create_recipe.html', categories=mongo.db.categories.find().sort("category_name", 1))
 
     return render_template('login.html')
 
@@ -121,6 +121,16 @@ def recipe(recipe_id):
         
     return render_template('recipe.html', recipe=show_recipe, categories=mongo.db.categories.find(), 
                             ingredients_list=ingredients_list, instructions_list=instructions_list)
+
+@app.route('/recipes')
+def recipes():
+    if 'username' in session:
+        username = session['username']
+        _recipes = mongo.db.recipes.find().sort("name", 1)
+        recipe_list = list(_recipes)
+        return render_template('recipes.html', recipes=recipe_list, username=username)
+
+    return render_template('login.html')
 
 @app.route('/category/<category>')
 def category(category):
@@ -147,8 +157,7 @@ def user(username):
 
 @app.route('/about')
 def about():
-    username = session['username']
-    return render_template('about.html', username=username)
+    return render_template('about.html')
 
 
 #-------------------------------------------------------------------------------

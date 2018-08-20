@@ -141,7 +141,9 @@ def category(category):
 def user(username):
     username = session['username']
     find_user = mongo.db.users.find_one({"username": username})
-    return render_template('user.html', username=username, user=find_user)
+    find_recipes = mongo.db.recipes.find({"author": username})
+    recipe_list = list(find_recipes)
+    return render_template('user.html', username=username, user=find_user, recipes=recipe_list)
 
 @app.route('/about')
 def about():

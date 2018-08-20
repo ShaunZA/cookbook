@@ -3,10 +3,19 @@
 <div class="container center-align">
     <div class="row">
         <div class="col s12">
-            <h3>Username: {{ username }}</h3>
-            <h3>First Name: {{ user.first_name }}</h3>
-            <h3>Last Name: {{ user.last_name }}</h3>
-            <h3>Email: {{ user.email }}</h3>
+            <p><strong>Username:</strong> {{ username }}</p>
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <p><strong>Recipes Created:</strong></p>
+        <ul>
+            {% for recipe in recipes %}
+            <li>{{ recipe.name }}</li>
+            {% endfor %}
+        </ul>
     </div>
 </div>
 {% endblock %}

@@ -88,9 +88,9 @@ def create_recipe():
 
             for key, value in form_data.items():
                 if key.startswith('instruction'):
-                    instructions_arr[key.replace("instruction","")] = str(value)
+                    instructions_arr[key.replace("instruction","")] = value.encode('utf-8')
                 if key.startswith('ingredient'):
-                    ingredients_arr[key.replace("ingredient","")] = str(value)
+                    ingredients_arr[key.replace("ingredient","")] = value.encode('utf-8')
 
             recipe.insert({
                 'name' : request.form['recipename'],

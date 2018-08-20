@@ -20,9 +20,10 @@ mongo = PyMongo(app)
 @app.route('/')
 def index():
     if 'username' in session:
+        username = session['username']
         _recipes = mongo.db.recipes.find()
         recipe_list = [recipe for recipe in _recipes]
-        return render_template('home.html', recipes=recipe_list)
+        return render_template('home.html', recipes=recipe_list, username=username)
 
     return render_template('login.html')
 
@@ -120,11 +121,23 @@ def recipe(recipe_id):
         
     return render_template('recipe.html', recipe=show_recipe, categories=mongo.db.categories.find(), ingredients_list=ingredients_list, instructions_list=instructions_list)
 
-#-------------------------------------------------------------------------------
+
+#--------------------------------OTHER PAGES------------------------------------
+
+
+@app.route('/user/<username>')
+def user(username):
+    username = session['username']
+    find_user = mongo.db.users.find_one({"username": username})
+    return render_template('user.html', username=username, user=find_user)
 
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+
+#-------------------------------------------------------------------------------
+
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'

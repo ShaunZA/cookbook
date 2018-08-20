@@ -2,10 +2,13 @@
 {% block body %}
 <div class="container">
     
-    <div class="row">
+    <div class="row center-align">
         {% if session['username'] %}
-        <div class="col s12 center-align">
-            <h3>WELCOME TO RECIPES, {{ session['username'].upper() }}!</h3>
+        <div class="col s12">
+            <h3>Welcome To Recipes, {{ session['username'] }}!</h3>
+        </div>
+        <div class="col s12">
+            <p>Choose from a category below or click on the Recipes link above to see a full list of recipes.</p>
         </div>
         {% endif %}
     </div>

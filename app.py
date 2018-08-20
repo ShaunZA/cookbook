@@ -105,13 +105,18 @@ def create_recipe():
                 'author' : session['username']
             })
 
-            return 'Done!'
+            return redirect(url_for('index')) #redirect after successful recipe creation
 
         return render_template('create_recipe.html', categories=mongo.db.categories.find().sort("category_name", 1))
 
     return render_template('login.html')
 
-
+@app.route('/delete/<recipe_id>')
+def delete(recipe_id):
+    username = session['username']
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    return redirect(url_for('index'))
+    
 @app.route('/recipe/<recipe_id>') # Page to view a Recipe
 def recipe(recipe_id):
     

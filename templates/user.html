@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block body %}
-<div class="container center-align">
-    <div class="row">
+<div class="container">
+    <div class="row center-align">
+        <div class="col s12">
+        <h3>User Details</h3>
+        </div>
+    </div>
+    <div class="row center-align">
         <div class="col s12">
             <p><strong>Username:</strong> {{ username }}</p>
             <p><strong>First Name:</strong> {{ user.first_name }}</p>
@@ -13,7 +18,18 @@
         <p><strong>Recipes Created:</strong></p>
         <ul>
             {% for recipe in recipes %}
-            <li>{{ recipe.name }}</li>
+            <li>
+                <div class="row valign-wrapper">
+                    <div class="col s6 m8">
+                        <p>{{ recipe.name }}</p>
+                    </div>
+                    <div class="col s6 m4">
+                        <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light btn">View</a>
+                        <a href="{{ url_for('delete', recipe_id=recipe._id) }}" class="waves-effect waves-light btn">Delete</a>
+                    </div>
+                </div>
+            </li>
+            
             {% endfor %}
         </ul>
     </div>

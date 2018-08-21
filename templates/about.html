@@ -1,12 +1,33 @@
 {% extends "base.html" %}
+{% set active_page = "about" %}
 {% block body %}
-<div class="container center-align">
+<div class="container valign-wrapper">
     <div class="row">
         <div class="col s12">
-            <h3>About Recipes Galore!</h3>
-            <p>This is a small app used to view and create your own recipes.</p>
-            <p>You can also view recipes created by other users.</p>
-            <p>Feel free to explore.</p>
+            <div class="row center-align">
+                <h3>About Recipes!</h3>
+                <p>This is a small app used to view and create your own recipes.</p>
+                <p>You can also view recipes created by other users.</p>
+                <p>Feel free to explore.{% if not session['username'] %} (Once you've logged in){% endif %}</p>
+            </div>
+            {% if session['username'] %}
+            <br>
+            <div class="row">
+                <h4>How to use:</h4>
+                <p>The main page has a list of categories you can choose from. Click on one and you will be shown all the recipes with in that category.</p>
+                <p>You can create your own recipes via the 'Create Recipe' button on top in the navigation bar. A form will come up and once you have filled in the relevant information, press the 'Save Recipe' button to submit you recipe.</p>
+                <p>A 'master list' of recipes are contained within the 'Recipes' button in the navigation bar. There you will see a complete list broken down into pages sorted alphabetically.</p>
+                <p>Your profile can be accessed by the 'User Page' button on the navigation bar. In here you can see your basic details along with all the recipes you have created since joining.</p>
+                <p>Don't forget to logout when you are done.</p>
+            </div>
+            {% endif %}
+        </div>
+    {% if not session['username'] %}
+        <div class="col s12">
+            <p>If you would like to view and contribute to this site, you will need to register an account.</p>
+            <p>Its free and takes five seconds. <a href="{{ url_for('register') }}">Sign up here</a>.</p>
+        </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}

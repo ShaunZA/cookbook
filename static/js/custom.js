@@ -22,6 +22,7 @@ function addIstructionFunction() {
     document.getElementById("instructions_list").appendChild(z);
 }
 
+
 // Code for removing extra input fields for ingredients and instructions
 
 function removeLastIngredient() {
@@ -33,6 +34,7 @@ function removeLastInstruction() {
     --j;
     $('#instructions_list').children().last().remove();
 }
+
 
 // Hide/Show the minus button in Create Recipe
 
@@ -64,3 +66,10 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
     $('select').formSelect();
   });
+
+// EasyPaginate
+$('#easyPaginate').easyPaginate({
+    paginateElement: 'li',
+    elementsPerPage: 10,
+    effect: 'climb'
+});

@@ -20,6 +20,7 @@ mongo = PyMongo(app)
 @app.route('/')
 def index():
     if 'username' in session:
+        
         username = session['username']
         _recipes = mongo.db.recipes.find()
         recipe_list = [recipe for recipe in _recipes]
@@ -80,7 +81,9 @@ def register():
 @app.route('/create_recipe', methods=['POST', 'GET'])
 def create_recipe():
     if 'username' in session:
-
+        
+        username = session['username']
+        
         if request.method == 'POST':
             ingredients_arr = {}
             instructions_arr = {}
@@ -107,7 +110,7 @@ def create_recipe():
 
             return redirect(url_for('index')) #redirect after successful recipe creation
 
-        return render_template('create_recipe.html', categories=mongo.db.categories.find().sort("category_name", 1))
+        return render_template('create_recipe.html', categories=mongo.db.categories.find().sort("category_name", 1), username=username)
 
     return render_template('login.html')
 
@@ -119,17 +122,21 @@ def delete(recipe_id):
     
 @app.route('/recipe/<recipe_id>') # Page to view a Recipe
 def recipe(recipe_id):
-    
-    show_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    instructions_list = show_recipe['instructions']
-    ingredients_list = show_recipe['ingredients_list']
+    if 'username' in session:
         
-    return render_template('recipe.html', recipe=show_recipe, categories=mongo.db.categories.find(), 
-                            ingredients_list=ingredients_list, instructions_list=instructions_list)
+        username = session['username']
+        show_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        instructions_list = show_recipe['instructions']
+        ingredients_list = show_recipe['ingredients_list']
+        return render_template('recipe.html', recipe=show_recipe, categories=mongo.db.categories.find(), 
+                                ingredients_list=ingredients_list, instructions_list=sorted(instructions_list.items()))
 
+    return render_template('login.html')
+    
 @app.route('/recipes')
 def recipes():
     if 'username' in session:
+        
         username = session['username']
         _recipes = mongo.db.recipes.find().sort("name", 1)
         recipe_list = list(_recipes)
@@ -139,14 +146,17 @@ def recipes():
 
 @app.route('/category/<category>')
 def category(category):
-    username = session['username']
-    category = mongo.db.categories.find({"category_name": category}) #search categories in categories db
-    cat_list = list(category) #create list out of above answer
-    fancy = cat_list[0]['fancy_name'] #target fancy cat name
-    _recipes = mongo.db.recipes.find({"category": fancy}) #category=fancy name
-    recipe_list = list(_recipes)
-
-    return render_template('category.html', username=username, recipes=recipe_list, cat=fancy)
+    if 'username' in session:
+        
+        username = session['username']
+        category = mongo.db.categories.find({"category_name": category}) #search categories in categories db
+        cat_list = list(category) #create list out of above answer
+        fancy = cat_list[0]['fancy_name'] #target fancy cat name
+        _recipes = mongo.db.recipes.find({"category": fancy}) #category=fancy name
+        recipe_list = list(_recipes)
+        return render_template('category.html', username=username, recipes=recipe_list, cat=fancy)
+    
+    return render_template('login.html')
 
 
 #--------------------------------OTHER PAGES------------------------------------
@@ -154,14 +164,21 @@ def category(category):
 
 @app.route('/user/<username>')
 def user(username):
-    username = session['username']
-    find_user = mongo.db.users.find_one({"username": username})
-    find_recipes = mongo.db.recipes.find({"author": username})
-    recipe_list = list(find_recipes)
-    return render_template('user.html', username=username, user=find_user, recipes=recipe_list)
-
+    if 'username' in session:
+        
+        username = session['username']
+        find_user = mongo.db.users.find_one({"username": username})
+        find_recipes = mongo.db.recipes.find({"author": username})
+        recipe_list = list(find_recipes)
+        return render_template('user.html', username=username, user=find_user, recipes=recipe_list)
+        
+    return render_template('login.html')
+    
 @app.route('/about')
 def about():
+    if 'username' in session:
+        username = session['username']
+        return render_template('about.html', username=username)
     return render_template('about.html')
 
 

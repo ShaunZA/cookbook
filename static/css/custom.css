@@ -1,14 +1,167 @@
-#removeIngButton, #removeInsButton {
-    display: none;
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Josefin+Sans:400,700');
+
+/* Base Changes */
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: #D9D9D9;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.hvr-bounce-to-top::before {
+    background: #6A163C !important;
+}
+
+.hvr-underline-reveal::before {
+    background: #fff !important;
+}
+
+/* Headers/Titles */
+.brand-logo,
+h1, h2, h3, h4,
+.collection-header,
+.ins-heading,
+.list-heading {
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+}
+
+.brand-logo {
+    font-size: 3em !important;
+    margin-left: 30px !important;
+}
+
+@media only screen and (max-width : 992px) {
+    .brand-logo {
+        margin-left: 0 !important;
+    }
+}
+
+.nav-wrapper ul li a, .sidenav li a, p {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.nav-wrapper {
+    background-color: #771543 !important;
+    font-weight: bold;
+  }
+
+/* Page Specific Changes Below */
+
+/* Recipe */
+.collection-item, td {
+    font-family: 'Josefin Sans', sans-serif !important;
+}
+
+.ins-number {
+    padding-right: 30px;
+}
+
+/* Category View/Home Page */
+.cat-name {
+    color: black;
 }
 
 .card-stacked .card-content {
     padding: 12px 4px !important;
 }
 
-.thumbnail {
-  object-fit: cover;
-  width:100px;
-  height:100px;
-  border-radius: 50%
+/* User */
+.user-recipe {
+    font-size: 1.2em;
+}
+
+@media only screen and (max-width : 680px) {
+.user-btn {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    }
+}
+
+/* Create Recipe */
+.collection-header, .ins-heading, .list-heading {
+    font-size: 2em;
+}
+
+.input-field label {
+    color: #4c4c4c;
+}
+
+.input-field input[type=text]:focus + label,
+.input-field input[type=number]:focus + label,
+.input-field input[type=email]:focus + label,
+.input-field input[type=password]:focus + label,
+.input-field textarea:focus + label{
+    color: #6A163C !important;
+}
+
+.input-field input[type=text]:focus,
+.input-field input[type=number]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus,
+.input-field textarea:focus{
+    border-bottom: 1px solid #000 !important;
+    box-shadow: 0 1px 0 0 #6A163C !important;
+}
+
+.input-field .prefix.active {
+    color: #000;
+}
+
+::placeholder {
+    color: #4c4c4c;
+    opacity: 1; /* Firefox */
+}
+
+.input-field .prefix.active {
+  color: #000 !important;
+}
+
+ul.dropdown-content.select-dropdown li span {
+    color: #000;
+}
+
+#removeIngButton, #removeInsButton {
+    display: none;
+}
+
+/* Get Images to fit in for Categories and Master List */
+.circle {
+    object-fit: cover !important;
+}
+
+/* easyPagination */
+
+.easyPaginateNav {
+    position: relative;
+    text-align: center;
+    margin: auto;
+    width: 100% !important;
+}
+
+.easyPaginateNav a {
+    color: #444;
+    border-radius: 2px;
+    vertical-align: top;
+    height: 30px;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+}
+
+.easyPaginateNav .current {
+    background-color: #6A163C;
+    color: #fff;
+}
+
+.recipes-main {
+    margin-bottom: 60px;
 }

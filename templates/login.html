@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 {% block body %}
-<div class="container center-align">
+<div class="container">
+    <div class="row center-align">
+        <p><span class="bold">Please log in to continue</span></p>
+    </div>
     <div class="row">
-        <p><strong>Please log in to continue</strong></p>
-
         <form class="col s12" method=POST action="{{ url_for('login') }}">
             <div class="row">
                 <div class="input-field col s12">
                     <input id="username" type="text" name="username" class="validate">
                     <label for="username">Username</label>
+                    <span class="helper-text">Note: Username is Case Sensitive</span>
                 </div>
             </div>
             <div class="row">
@@ -17,11 +19,14 @@
                     <label for="password">Password</label>
                 </div>
             </div>
-            <button class="btn waves-effect waves-light" type="submit">Submit
-                <i class="material-icons right">send</i>
-            </button>
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light red darken-4" type="submit">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
         </form>
-
+    </div>
+    <div class="row center-align">
         <p>Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a>.</p>
     </div>
 </div>

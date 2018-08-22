@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block body %} 
+<div class="container center-align">
+    <div class="row">
+        <h3><span class="bold">Edit:</span> {{ recipe.name }}</h3>
+    </div>
+    <div class="row">
+            <form class="col s12" method=POST action="{{ url_for('edit', recipe_id=recipe._id) }}">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="inputRecipeName" name="recipename" value="{{ recipe.name }}">
+                        <label for="inputRecipeName">Recipe Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="inputDescription" name="recipedesc" value="{{ recipe.desc }}">
+                        <label for="inputDescription">Description</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select name="cat_select">
+                            <option value="" disabled selected>Choose Recipe Category</option>
+                            {% for cat in categories %}
+                                {% if cat.fancy_name == recipe.category %}
+                                <option value="{{cat.fancy_name}}" selected >{{cat.fancy_name}}</option>
+                                {% else %}
+                                <option value="{{cat.fancy_name}}">{{cat.fancy_name}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s11" id="ingredients_list">
+                        <label for="inputIngredients">Ingredient</label>
+                        {% for key, value in ingredients_list %}
+                        <input type="text" id="inputIngredients" name="ingredient{{ key }}" value="{{ value }}">
+                        {% endfor %}
+                    </div>
+                    <div class="col s1">
+                        <button type="button" class="waves-effect waves-red btn red darken-4" id="addIngButton" onclick="addIngredientFunction(); hideIngButtonFunction() "><i class="material-icons">add</i></button>
+                        <button type="button" class="waves-effect waves-red btn red darken-4" id="removeIngButton" onclick="removeLastIngredient(); hideIngButtonFunction() "><i class="material-icons">remove</i></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s11" id="instructions_list">
+                        <label for="inputInstructions">Instructions</label>
+                        {% for key, value in instructions_list %}
+                        <textarea id="inputInstructions" rows="2" name="instruction{{ key }}" class="materialize-textarea">{{ value }}</textarea>
+                        {% endfor %}
+                    </div>
+                    <div class="col s1">
+                        <button type="button" class="waves-effect waves-red btn red darken-4" id="addInsButton" onclick="addIstructionFunction(); hideInsButtonFunction() "><i class="material-icons">add</i></button>
+                        <button type="button" class="waves-effect waves-red btn red darken-4" id="removeInsButton" onclick="removeLastInstruction(); hideInsButtonFunction() "><i class="material-icons">remove</i></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="number" id="inputPrepTime" name="prep_time" value="{{ recipe.prep_time }}">
+                        <label for="inputPrepTime">Prep Time (In Minutes)</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="number" id="inputCookTime" name="cook_time" value="{{ recipe.cook_time }}">
+                        <label for="inputCookTime">Cook Time (In Minutes)</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" id="inputImgUrl" name="img_url" value="{{ recipe.img_url }}">
+                        <label for="inputImgUrl">Image Url</label>
+                        <span class="helper-text">http://example.com/image.jpg</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                <button type="submit" class="btn btn-primary btn-block red darken-4">Save Edit</button>
+                </div>
+                <div class="col s6">
+                <a href="{{ url_for('index') }}" class="waves-effect waves-red btn red darken-4 right">Cancel</a>
+                </div>
+                </div>
+            </form>
+    </div>
+</div>
+{% endblock %}
+
+
+

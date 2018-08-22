@@ -73,3 +73,7 @@ $('#easyPaginate').easyPaginate({
     elementsPerPage: 10,
     effect: 'climb'
 });
+
+$(".flash-close").click(function(){
+    $(this).parent().parent().fadeOut(1000).remove();
+});

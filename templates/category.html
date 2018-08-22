@@ -7,7 +7,7 @@
     <div class="row">
         <ul class="collection" id="easyPaginate">
         {% for recipe in recipes %}
-            <li class="collection-item avatar hoverable">
+            <li class="collection-item avatar">
                 <img src="{{ recipe.img_url }}" alt="" class="circle">
                 <span class="list-heading">{{recipe.name}}</span>
                 <p>Prep Time: {{ recipe.prep_time }} | Cook Time: {{ recipe.cook_time }}<br>

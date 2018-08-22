@@ -36,9 +36,16 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="row">
-                        <p class="left"><span class="bold">Category:</span> {{ recipe.category }}</p>
-                        <p class="right"><span class="bold">Author:</span> {{ recipe.author }}</p>
+                    <div class="row valign-wrapper">
+                        <div class="col s6">
+                            <p class="left"><span class="bold">Category:</span> {{ recipe.category }}</p>
+                        </div>
+                        {% if session['username'] == recipe.author %}
+                        <a href="{{ url_for('edit', recipe_id=recipe._id) }}" class="waves-effect waves-light green btn right">Edit</a>
+                        {% endif %}
+                        <div class="col s6">
+                            <p class="right"><span class="bold">Author:</span> {{ recipe.author }}</p>
+                        </div>
                     </div>
                 </div>
             </div>

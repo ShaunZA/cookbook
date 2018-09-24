@@ -212,7 +212,7 @@ def user(username):
 
         username = session['username']
         find_user = mongo.db.users.find_one({"username": username})
-        find_recipes = mongo.db.recipes.find({"author": username})
+        find_recipes = mongo.db.recipes.find({"author": username}).sort("name", 1)
         recipe_list = list(find_recipes)
         return render_template('user.html', username=username, user=find_user, recipes=recipe_list)
 

@@ -1,21 +1,19 @@
-{% extends 'base.html' %}
-{% block body %}
+{% extends 'base.html' %} {% block body %}
 <div class="container">
     <div class="row">
         <h3>{{ cat }}</h3>
     </div>
     <div class="row">
         <ul class="collection" id="easyPaginate">
-        {% for recipe in recipes %}
+            {% for recipe in recipes %}
             <li class="collection-item avatar">
                 <img src="{{ recipe.img_url }}" alt="" class="circle">
                 <span class="list-heading">{{recipe.name}}</span>
-                <p>Prep Time: {{ recipe.prep_time }} | Cook Time: {{ recipe.cook_time }}<br>
-                {{ recipe.desc }}
+                <p>Prep Time: {{ recipe.prep_time }} | Cook Time: {{ recipe.cook_time }}<br> {{ recipe.desc }}
                 </p>
                 <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="secondary-content waves-effect waves-red btn-small red darken-4">View</a>
             </li>
-        {% endfor %}
+            {% endfor %}
         </ul>
     </div>
 </div>

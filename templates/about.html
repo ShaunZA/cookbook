@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-{% set active_page = "about" %}
-{% block body %}
+{% extends "base.html" %} {% set active_page = "about" %} {% block body %}
 <div class="container valign-wrapper">
     <div class="row">
         <div class="col s12">
@@ -22,7 +20,7 @@
             </div>
             {% endif %}
         </div>
-    {% if not session['username'] %}
+        {% if not session['username'] %}
         <div class="col s12">
             <p>If you would like to view and contribute to this site, you will need to register an account.</p>
             <p>Its free and takes five seconds. <a href="{{ url_for('register') }}">Sign up here</a>.</p>

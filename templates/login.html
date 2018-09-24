@@ -1,21 +1,18 @@
-{% extends "base.html" %}
-{% block body %}
+{% extends "base.html" %} {% block body %}
 <div class="container">
     <div class="row center-align">
         <p><span class="bold">Please log in to continue</span></p>
     </div>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="row flash-container valign-wrapper center-align">
-            <div class="col s12">
-                {% for message in messages %}
-                <h4 class="flash-message">{{ message }}</h4>
-                {% endfor %}
-                <a class="btn-floating btn waves-effect waves-light red flash-close"><i class="large material-icons">close</i></a>
-            </div>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="row flash-container valign-wrapper center-align">
+        <div class="col s12">
+            {% for message in messages %}
+            <h4 class="flash-message">{{ message }}</h4>
+            {% endfor %}
+            <a class="btn-floating btn waves-effect waves-light red flash-close"><i class="large material-icons">close</i></a>
         </div>
-        {% endif %}
-    {% endwith %}
+    </div>
+    {% endif %} {% endwith %}
     <div class="row">
         <form class="col s12" method=POST action="{{ url_for('login') }}">
             <div class="row">

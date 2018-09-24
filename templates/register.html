@@ -1,11 +1,9 @@
-{% extends "base.html" %}
-{% block body %} 
+{% extends "base.html" %} {% block body %}
 <div class="container">
     <br>
     <div class="row center-align">
         <p>Fill in the fields below to get registered</p>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
+        {% with messages = get_flashed_messages() %} {% if messages %}
         <div class="row flash-container valign-wrapper center-align">
             <div class="col s12">
                 {% for message in messages %}
@@ -14,8 +12,7 @@
                 <a class="btn-floating btn waves-effect waves-light red flash-close"><i class="large material-icons">close</i></a>
             </div>
         </div>
-        {% endif %}
-    {% endwith %}
+        {% endif %} {% endwith %}
     </div>
     <div class="row">
         <form class="col s12" method=POST action="{{ url_for('register') }}">
@@ -57,5 +54,3 @@
     </div>
 </div>
 {% endblock %}
-
-

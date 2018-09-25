@@ -8,19 +8,19 @@
         <form class="col s12" method=POST action="{{ url_for('create_recipe') }}">
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" id="inputRecipeName" name="recipename">
+                    <input type="text" id="inputRecipeName" name="recipename" required>
                     <label for="inputRecipeName">Recipe Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" id="inputDescription" name="recipedesc">
+                    <input type="text" id="inputDescription" name="recipedesc" required>
                     <label for="inputDescription">Description</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <select name="cat_select">
+                    <select name="cat_select" required>
                             <option value="" disabled selected>Choose Recipe Category</option>
                             {% for cat in categories %}
                             <option value="{{cat.fancy_name}}">{{cat.fancy_name}}</option>
@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="input-field col s11" id="ingredients_list">
                     <label for="inputIngredients">Ingredient</label>
-                    <input type="text" id="inputIngredients" name="ingredient1" placeholder="125g plain flour">
+                    <input type="text" id="inputIngredients" name="ingredient1" placeholder="125g plain flour" required>
                 </div>
                 <div class="col s1">
                     <button type="button" class="waves-effect waves-red btn red darken-4" id="addIngButton" onclick="addIngredientFunction(); hideIngButtonFunction() "><i class="material-icons">add</i></button>
@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="input-field col s11" id="instructions_list">
                     <label for="inputInstructions">Instructions</label>
-                    <textarea id="inputInstructions" rows="2" name="instruction1" class="materialize-textarea" placeholder="Pour flour in a bowl with 2 eggs"></textarea>
+                    <textarea id="inputInstructions" rows="2" name="instruction1" class="materialize-textarea" placeholder="Pour flour in a bowl with 2 eggs" required></textarea>
                 </div>
                 <div class="col s1">
                     <button type="button" class="waves-effect waves-red btn red darken-4" id="addInsButton" onclick="addIstructionFunction(); hideInsButtonFunction() "><i class="material-icons">add</i></button>
@@ -50,19 +50,19 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="number" id="inputPrepTime" name="prep_time">
+                    <input type="number" id="inputPrepTime" name="prep_time" required>
                     <label for="inputPrepTime">Prep Time (In Minutes)</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="number" id="inputCookTime" name="cook_time">
+                    <input type="number" id="inputCookTime" name="cook_time" required>
                     <label for="inputCookTime">Cook Time (In Minutes)</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" id="inputImgUrl" name="img_url">
+                    <input type="text" id="inputImgUrl" name="img_url" required>
                     <label for="inputImgUrl">Image Url</label>
                     <span class="helper-text">http://example.com/image.jpg</span>
                 </div>

@@ -1,4 +1,5 @@
 import os
+import env
 import json
 import collections
 import bcrypt
@@ -8,8 +9,8 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-app.config["MONGO_DBNAME"] = 'myrecipedb'
-app.config["MONGO_URI"] = 'mongodb://root:r00tp4ss...@ds219832.mlab.com:19832/myrecipedb'
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
 mongo = PyMongo(app)
 

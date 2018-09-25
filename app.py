@@ -173,7 +173,7 @@ def recipe(recipe_id):
         show_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         instructions_list = show_recipe['instructions']
         ingredients_list = show_recipe['ingredients_list']
-        return render_template('recipe.html', recipe=show_recipe, categories=mongo.db.categories.find(),
+        return render_template('recipe.html', recipe=show_recipe, categories=mongo.db.categories.find(), username=username,
                                 ingredients_list=ingredients_list, instructions_list=sorted(instructions_list.items()))
 
     return render_template('login.html')
